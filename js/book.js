@@ -1,7 +1,8 @@
 var isPlaying = false;
 var player = videojs('book-player');
 
-var pathPrefix = './assets/videos/';
+var pathPrefix = './assets/video/';
+var pageTurnSound = new Audio('./assets/audio/page-flip-03.mp3');
 
 var currentVideoIndex = 0;
 
@@ -23,6 +24,7 @@ function togglePlayPause() {
 	} else {
 		player.play();
 		isPlaying = true;
+		pageTurnSound.play();
 	}
 }
 
@@ -69,6 +71,7 @@ player.ready(function() {
 	}
 
 	player.on("ended", function() {
+		isPlaying = false;
 		if (currentVideoIndex < videos.length - 1) {
 			currentVideoIndex++;
 			player.src(generateSourcesFromFile(videos[currentVideoIndex]));
