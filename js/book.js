@@ -23,7 +23,8 @@ var videos = [
 	'13-14-15-16.mp4',
 	'15-16-17-18.mp4',
 	'17-18-19-20.mp4',
-	'19-20-End.mp4'
+	'19-20-21-22.mp4',
+	'21-22-End.mp4'
 ];
 
 function togglePlayPause() {
@@ -84,7 +85,9 @@ player.ready(function() {
 	player.on("ended", function() {
 		if (currentVideoIndex < videos.length - 1) {
 			currentVideoIndex++;
-			player.src(generateSourcesFromFile(videos[currentVideoIndex]));
+			setTimeout(function() {
+				player.src(generateSourcesFromFile(videos[currentVideoIndex]));
+			}, 5000);
 		}
 		
 	})
